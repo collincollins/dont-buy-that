@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import InputForm from './InputForm';
 import Results from './Results';
-// Removed: import ExportData from './ExportData';
 import { calculateFutureValue } from '../utils/calculations';
 
 function Dashboard() {
@@ -22,10 +21,9 @@ function Dashboard() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Should I Buy That?</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Don't Buy That</h1>
       <InputForm onAddEntry={addEntry} />
       {entry && <Results entry={entry} />}
-      {/* Removed: <ExportData entries={entry ? [entry] : []} /> */}
     </div>
   );
 }
