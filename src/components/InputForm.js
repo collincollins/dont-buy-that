@@ -27,10 +27,10 @@ function InputForm({ onAddEntry }) {
       currentAge: current,
       retirementAge: retirement,
       spendingAmount: amount,
-      rateOfReturn: 0.08, // Adding the rate of return as part of the entry
+      rateOfReturn: 0.08,
     });
 
-    // Clear inputs
+    // clear inputs
     setCurrentAge('');
     setRetirementAge('');
     setSpendingAmount('');

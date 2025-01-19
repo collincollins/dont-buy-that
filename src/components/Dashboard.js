@@ -1,4 +1,5 @@
 // src/components/Dashboard.js
+
 import React, { useEffect, useState } from 'react';
 import InputForm from './InputForm';
 import Results from './Results';
@@ -6,13 +7,13 @@ import Results from './Results';
 function Dashboard() {
   const [entry, setEntry] = useState(null);
 
-  // Load entry from localStorage on component mount
+  // load entry from localStorage on component mount
   useEffect(() => {
     const storedEntry = JSON.parse(localStorage.getItem('spendingEntry')) || null;
     setEntry(storedEntry);
   }, []);
 
-  // Add or update entry and update localStorage
+  // add or update entry and update localStorage
   const addEntry = (newEntry) => {
     setEntry(newEntry);
     localStorage.setItem('spendingEntry', JSON.stringify(newEntry));
