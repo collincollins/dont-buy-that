@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import InputForm from './InputForm';
 import Results from './Results';
-import { calculateFutureValue } from '../utils/calculations';
 
 function Dashboard() {
   const [entry, setEntry] = useState(null);
