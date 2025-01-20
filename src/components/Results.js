@@ -114,9 +114,9 @@ function Results({ entry }) {
   };
 
   return (
-    <div className="my-8 w-full mx-auto px-2 max-w-screen-md">
+    <div className="my-8 w-full mx-auto px-0 max-w-screen-xl">
       {/* Transparent Blue Container */}
-      <div className="bg-blue-100 bg-opacity-30 backdrop-blur-md shadow-lg rounded-lg p-6">
+      <div className="bg-blue-100 bg-opacity-30 backdrop-blur-xl shadow-lg rounded-xl p-4">
         {/* Future Value */}
         <div className="mb-6 text-center">
           <p className="text-3xl font-bold text-gray-800">

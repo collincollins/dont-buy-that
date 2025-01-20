@@ -1,5 +1,6 @@
 // src/App.js
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
 import coffeeButton from './components/img/buy-me-a-coffee-button.png';
 import Navbar from './components/Navbar';
 import InputForm from './components/InputForm';
@@ -10,6 +11,9 @@ function App() {
   const [entry, setEntry] = useState(null);
   const [showCoffeeButton, setShowCoffeeButton] = useState(false);
   const [threeDollarsFutureValue, setThreeDollarsFutureValue] = useState(0);
+
+  // 1. Create a ref for the results section
+  const resultsRef = useRef(null);
 
   // called by InputForm once validation passes
   const handleAddEntry = (newEntry) => {
@@ -28,17 +32,22 @@ function App() {
     calculateThreeDollarsFutureValue(
       newEntry.retirementAge - newEntry.currentAge
     );
+
+    // 2. After setting entry, scroll to results (small timeout to ensure render)
+    setTimeout(() => {
+      if (resultsRef.current) {
+        resultsRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   // helper function for the coffee calculation
   const calculateThreeDollarsFutureValue = (years) => {
-    const P = 3;       // principal always starts at 3
-    const r = 0.08;    // 8% interest
-    const n = years;   // number of years from the difference
+    const P = 3; // principal
+    const r = 0.08; // 8% interest
+    const n = years; // number of years
 
-    // future value of coffee money based on user time interval:
     const FV = P * Math.pow(1 + r, n);
-
     console.log(`Calculating with P=${P}, years=${n}, result=${FV}`);
 
     setThreeDollarsFutureValue(FV.toFixed(2));
@@ -55,10 +64,13 @@ function App() {
           <InputForm onAddEntry={handleAddEntry} />
         </Card>
 
+        {/* 3. Attach the ref to the wrapper around Results */}
         {entry && (
-          <Card>
-            <Results entry={entry} />
-          </Card>
+          <div ref={resultsRef}>
+            <Card>
+              <Results entry={entry} />
+            </Card>
+          </div>
         )}
       </main>
 
@@ -67,7 +79,6 @@ function App() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-4">
           <span className="text-gray-500 text-sm">Made by Collin</span>
 
-          {/* conditionally render the "Buy Me a Coffee" button */}
           {showCoffeeButton && (
             <>
               <a
