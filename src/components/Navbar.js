@@ -8,8 +8,8 @@ function Navbar() {
             font-bold 
             bubbly-font 
             text-primary 
-            bg-gray-100 
-            bg-opacity-90 
+            bg-primary/5 
+            bg-opacity-100 
             px-6 
             py-3 
             rounded-full
