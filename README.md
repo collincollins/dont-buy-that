@@ -1,4 +1,4 @@
- # Don't Buy That!
+ # [Don't Buy That!](www.dontbuythat.org)
 
  **Don't Buy That!** is a webapp that helps you see what your money could potentially grow into if you skip a purchase and invest the money instead. Enter your current age, the age at which you plan to retire, and the amount you’re thinking of spending. The app calculates the future value of that amount at an 8% annual return and visualizes the growth via a chart.
  
