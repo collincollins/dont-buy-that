@@ -1,8 +1,10 @@
 // src/components/Dashboard.js
 
 import React, { useEffect, useState } from 'react';
+import Navbar from './Navbar';
 import InputForm from './InputForm';
 import Results from './Results';
+import Card from './Card';
 
 function Dashboard() {
   const [entry, setEntry] = useState(null);
@@ -20,10 +22,28 @@ function Dashboard() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Don't Buy That</h1>
-      <InputForm onAddEntry={addEntry} />
-      {entry && <Results entry={entry} />}
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 p-4">
+      {/* navigation bar */}
+      <Navbar />
+
+      {/* main content */}
+      <main className="w-full max-w-4xl mb-8">
+        <Card>
+          <InputForm onAddEntry={addEntry} />
+        </Card>
+      </main>
+
+      {/* results */}
+      {entry && (
+        <div className="w-full max-w-4xl">
+          <Results entry={entry} />
+        </div>
+      )}
+
+      {/* footer */}
+      <footer className="w-full max-w-4xl text-center text-gray-600 dark:text-gray-400 mt-auto">
+        &copy; {new Date().getFullYear()} Don't Buy That. All rights reserved.
+      </footer>
     </div>
   );
 }
