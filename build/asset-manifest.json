@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.fc0e6ef5.css",
-    "main.js": "/static/js/main.9a50e4ef.js",
+    "main.css": "/static/css/main.85c6351f.css",
+    "main.js": "/static/js/main.0e9ef306.js",
+    "static/media/buy-me-a-coffee-button.png": "/static/media/buy-me-a-coffee-button.59592e6f160ed8617a13.png",
     "index.html": "/index.html",
-    "main.fc0e6ef5.css.map": "/static/css/main.fc0e6ef5.css.map",
-    "main.9a50e4ef.js.map": "/static/js/main.9a50e4ef.js.map"
+    "main.85c6351f.css.map": "/static/css/main.85c6351f.css.map",
+    "main.0e9ef306.js.map": "/static/js/main.0e9ef306.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc0e6ef5.css",
-    "static/js/main.9a50e4ef.js"
+    "static/css/main.85c6351f.css",
+    "static/js/main.0e9ef306.js"
   ]
 }

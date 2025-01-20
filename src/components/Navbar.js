@@ -1,11 +1,7 @@
-// src/components/Navbar.js
-
-import React from 'react';
-
 function Navbar() {
   return (
     <nav className="w-full bg-white shadow-md mb-8">
-      <div className="px-4 py-4 flex justify-center items-center">
+      <div className="px-4 py-4 flex flex-col items-center">
         <h2 
           className="
             text-5xl 
@@ -21,6 +17,9 @@ function Navbar() {
         >
           Don't Buy That!
         </h2>
+        <p className="text-lg text-gray-700 mt-2">
+        Ever wonder what your money could grow into if you skip that purchase?
+        </p>
       </div>
     </nav>
   );
