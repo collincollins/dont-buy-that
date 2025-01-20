@@ -41,11 +41,14 @@ function Results({ entry }) {
       {
         data: dataPoints,
         fill: false,
-        backgroundColor: '#10B981',
-        borderColor: '#10B981',
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 6,
+        backgroundColor: '#56AE57',
+        borderColor: '#56AE57',
+        tension: 0,
+        pointRadius: 6,
+        pointBorderColor: '#000',
+        pointBorderWidth: 2,
+        pointHoverRadius: 10,
+        pointStyle: 'rect',
       },
     ],
   };
@@ -57,10 +60,10 @@ function Results({ entry }) {
       legend: { display: false },
       title: {
         display: true,
-        text: 'Investment Growth Over Time',
+        text: 'Investment Growth',
         font: {
-          size: 20,
-          family: 'Inter, sans-serif',
+          size: 10,
+          family: "'Press Start 2P', sans-serif",
         },
         color: '#374151',
       },
@@ -74,8 +77,8 @@ function Results({ entry }) {
           },
         },
         backgroundColor: 'rgba(31, 41, 55, 0.9)',
-        titleFont: { family: 'Inter, sans-serif', size: 16 },
-        bodyFont: { family: 'Inter, sans-serif', size: 14 },
+        titleFont: { family: "'Press Start 2P', sans-serif", size: 16 },
+        bodyFont: { family: "'Press Start 2P', sans-serif", size: 14 },
       },
     },
     scales: {
@@ -83,12 +86,17 @@ function Results({ entry }) {
         title: {
           display: true,
           text: 'Age',
-          font: { size: 16, family: 'Inter, sans-serif' },
+          font: { size: 12, family: "'Press Start 2P', sans-serif" },
           color: '#374151',
         },
         ticks: {
-          font: { size: 14, family: 'Inter, sans-serif' },
+          font: { size: 10, family: "'Press Start 2P', sans-serif" },
           color: '#374151',
+        },
+        grid: {
+          display: true,
+          lineWidth: 1,
+          color: '#D3D3D3',
         },
       },
       y: {
@@ -96,11 +104,11 @@ function Results({ entry }) {
         title: {
           display: true,
           text: 'Future Value ($)',
-          font: { size: 16, family: 'Inter, sans-serif' },
+          font: { size: 12, family: "'Press Start 2P', sans-serif" },
           color: '#374151',
         },
         ticks: {
-          font: { size: 14, family: 'Inter, sans-serif' },
+          font: { size: 10, family: "'Press Start 2P', sans-serif" },
           color: '#374151',
           callback: function (value) {
             return '$' + value.toLocaleString(undefined, {
@@ -109,58 +117,60 @@ function Results({ entry }) {
             });
           },
         },
+        grid: {
+          display: true,
+          lineWidth: 1,
+          color: '#D3D3D3',
+        },
       },
     },
   };
 
   return (
-    <div className="my-8 w-full mx-auto px-0 max-w-screen-xl">
-      {/* Transparent Blue Container */}
-      <div className="bg-blue-100 bg-opacity-30 backdrop-blur-xl shadow-lg rounded-xl p-4">
-        {/* Future Value */}
-        <div className="mb-6 text-center">
-          <p className="text-3xl font-bold text-gray-800">
-            Future Value at Retirement:{' '}
-            <span className="text-emerald-500">
-              $
-              <CountUp
-                end={finalValue}
-                duration={2.5}
-                separator=","
-                decimals={0}
-              />
-            </span>
-          </p>
-        </div>
+    <div className="mt-3 w-full mx-auto px-0 max-w-screen-xl">
+      {/* Future Value */}
+      <div className="mb-4 text-center">
+        <p className="text-lg font-bold text-gray-800">
+          Future Value at Retirement:
+          <span className="text-accent block">
+            $
+            <CountUp
+              end={finalValue}
+              duration={2.5}
+              separator=","
+              decimals={0}
+            />
+          </span>
+        </p>
+      </div>
 
-        {/* Chart */}
-        <div className="relative w-full h-80 sm:h-96">
-          <Line data={data} options={options} />
-        </div>
+      {/* Chart */}
+      <div className="relative w-full h-80 sm:h-96 border border-black shadow-pixel-xs rounded-md p-1">
+        <Line data={data} options={options} />
+      </div>
 
-        {/* Parameters */}
-        <div className="mt-6 px-2">
-          <h2 className="text-2xl font-semibold text-center mb-4">Investment Parameters</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="text-center">
-              <p className="text-lg font-medium text-gray-700">
-                <strong>Annual Rate of Return:</strong> 8.00%
-              </p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-medium text-gray-700">
-                <strong>Investment Period:</strong> {currentAge} to {retirementAge}
-              </p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-medium text-gray-700">
-                <strong>Initial Investment:</strong>{' '}
-                ${spendingAmount.toLocaleString(undefined, {
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
-                })}
-              </p>
-            </div>
+      {/* Parameters */}
+      <div className="mt-10 px-2">
+        <h2 className="text-xs font-semibold text-center mb-4">Investment Parameters</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="text-center">
+            <p className="text-xs font-medium text-gray-700">
+              <strong>Annual Rate of Return:</strong> 8.00%
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-xs font-medium text-gray-700">
+              <strong>Investment Period:</strong> {currentAge} to {retirementAge}
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-xs font-medium text-gray-700">
+              <strong>Initial Investment:</strong>{' '}
+              ${spendingAmount.toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })}
+            </p>
           </div>
         </div>
       </div>

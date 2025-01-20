@@ -1,21 +1,13 @@
 /* src/index.css */
 
-/* Import the Fredoka One font for a "bubbly" look */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
-/* Tailwind base directives */
+/* tailwind base directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
+/* custom styles */
 body {
-  @apply font-sans bg-gray-100 text-gray-800;
-}
-
-/* Bubbly font utility class */
-.bubbly-font {
-  font-family: 'Fredoka One', cursive;
+  @apply font-sans bg-gray-100 text-gray-800; /* uses 'font-sans' which is now 'Press Start 2P' */
 }
 
 code {

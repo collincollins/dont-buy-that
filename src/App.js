@@ -33,7 +33,7 @@ function App() {
       newEntry.retirementAge - newEntry.currentAge
     );
 
-    // 2. After setting entry, scroll to results (small timeout to ensure render)
+    // 2. after setting entry, scroll to results (small timeout to ensure render)
     setTimeout(() => {
       if (resultsRef.current) {
         resultsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -54,30 +54,32 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen bg-primarydark bg-opacity-30 flex flex-col">
       {/* navbar */}
       <Navbar />
 
       {/* main content */}
-      <main className="flex-grow w-full max-w-screen-md mx-auto px-4">
-        <Card className="mb-8">
+      <main className="flex-grow w-full max-w-screen-md mx-auto px-3">
+        <Card className="mb-6">
           <InputForm onAddEntry={handleAddEntry} />
         </Card>
 
-        {/* 3. Attach the ref to the wrapper around Results */}
+        {/* Attach the ref to the wrapper around Results */}
         {entry && (
           <div ref={resultsRef}>
-            <Card>
+            {/* Apply styles directly to Card */}
+            <Card className="bg-gray-100 p-4 border border-black shadow-pixel-lg">
               <Results entry={entry} />
             </Card>
           </div>
         )}
       </main>
 
+
       {/* footer */}
-      <footer className="w-full bg-white shadow-md mt-8 rounded-t-lg">
+      <footer className="w-[90%] mx-auto bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-4">
-          <span className="text-gray-500 text-sm">Made by Collin</span>
+          <span className="text-gray-500 text-xs">Made by Collin</span>
 
           {showCoffeeButton && (
             <>
@@ -89,10 +91,10 @@ function App() {
                 <img
                   src={coffeeButton}
                   alt="Buy Me A Coffee"
-                  style={{ height: '60px', width: '217px' }}
+                  style={{ height: '50px', width: '181px' }}
                 />
               </a>
-              <span className="text-gray-500 text-sm italic">
+              <span className="text-gray-500 text-xs italic">
                 *or don't and have ${threeDollarsFutureValue} in retirement
               </span>
             </>

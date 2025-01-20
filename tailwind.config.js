@@ -2,23 +2,35 @@
 
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // scans all JS/JSX/TS/TSX files in src/
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // sets Inter as the default sans-serif font
+        sans: ['"Press Start 2P"', 'mono'], // pixelated font
       },
       colors: {
         primary: {
-          DEFAULT: '#4F46E5', // indigo-600
+          DEFAULT: '#34528F', // dark pastel blue
         },
         secondary: {
           DEFAULT: '#374151', // gray-700
         },
         accent: {
-          DEFAULT: '#10B981', // emerald-500
+          DEFAULT: '#56AE57', // dark pastel green
         },
+        primarydark: {
+          DEFAULT: '#2A4375', // dark dark pastel blue
+        },
+        primarycomplement: {
+          DEFAULT: '#D5BC8A', // complementary dark pastel blue
+        },
+      },
+      boxShadow: {
+        'pixel-xs': '1px 1px 0 #000, 1.5px .5px 0 #000, 1.5px 1.5px 0 #000',
+        'pixel-sm': '1px 1px 0 #000, 2px 2px 0 #000, 2px 2px 0 #000',
+        'pixel': '1px 1px 0 #000, 3px 3px 0 #000, 3px 3px 0 #000',
+        'pixel-lg': '1px 1px 0 #000, 4px 4px 0 #000, 4px 4px 0 #000'
       },
     },
   },

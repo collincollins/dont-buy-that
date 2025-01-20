@@ -58,7 +58,7 @@ function InputForm({ onAddEntry }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* current age */}
         <div>
-          <label htmlFor="currentAge" className="block text-sm font-medium text-secondary">
+          <label htmlFor="currentAge" className="block text-xs font-medium text-secondary">
             Current Age
           </label>
           <input
@@ -70,17 +70,17 @@ function InputForm({ onAddEntry }) {
             min="0"
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.currentAge ? 'border-red-500' : 'border-gray-300'
-            } rounded-md shadow-sm focus:ring-primary focus:border-primary`}
+            } rounded-md focus:ring-primary focus:border-primary text-xs`}
             placeholder="e.g., 30"
           />
           {errors.currentAge && (
-            <p className="mt-1 text-sm text-red-500">{errors.currentAge}</p>
+            <p className="mt-1 text-xs text-red-500">{errors.currentAge}</p>
           )}
         </div>
 
         {/* retirement age */}
         <div>
-          <label htmlFor="retirementAge" className="block text-sm font-medium text-secondary">
+          <label htmlFor="retirementAge" className="block text-xs font-medium text-secondary">
             Retirement Age
           </label>
           <input
@@ -92,18 +92,18 @@ function InputForm({ onAddEntry }) {
             min="0" 
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.retirementAge ? 'border-red-500' : 'border-gray-300'
-            } rounded-md shadow-sm focus:ring-primary focus:border-primary`}
+            } rounded-md focus:ring-primary focus:border-primary text-xs`}
             placeholder="e.g., 65"
           />
           {errors.retirementAge && (
-            <p className="mt-1 text-sm text-red-500">{errors.retirementAge}</p>
+            <p className="mt-1 text-xs text-red-500">{errors.retirementAge}</p>
           )}
         </div>
       </div>
 
       {/* proposed spending amount */}
       <div>
-        <label htmlFor="spendingAmount" className="block text-sm font-medium text-secondary">
+        <label htmlFor="spendingAmount" className="block text-xs font-medium text-secondary">
           Proposed Spending Amount ($)
         </label>
         <input
@@ -115,19 +115,19 @@ function InputForm({ onAddEntry }) {
           min="0"
           className={`mt-1 block w-full px-4 py-3 border ${
             errors.spendingAmount ? 'border-red-500' : 'border-gray-300'
-          } rounded-md shadow-sm focus:ring-primary focus:border-primary`}
+          } rounded-md focus:ring-primary focus:border-primary text-xs`}
           placeholder="e.g., 10000"
         />
         {errors.spendingAmount && (
-          <p className="mt-1 text-sm text-red-500">{errors.spendingAmount}</p>
+          <p className="mt-1 text-xs text-red-500">{errors.spendingAmount}</p>
         )}
       </div>
 
-      {/* aubmit button */}
+      {/* submit button */}
       <div>
         <button
           type="submit"
-          className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-300"
+          className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md text-white text-2sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-300 border border-black shadow-pixel"
           aria-label="Calculate Future Value"
         >
           Calculate
