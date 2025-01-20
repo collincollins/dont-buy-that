@@ -36,7 +36,7 @@ function Results({ entry }) {
   );
 
   const data = {
-    labels: labels,
+    labels,
     datasets: [
       {
         data: dataPoints,
@@ -114,9 +114,10 @@ function Results({ entry }) {
   };
 
   return (
-    <div className="my-8 px-4">
+    <div className="my-8 w-full mx-auto px-2 max-w-screen-md">
+      {/* Transparent Blue Container */}
       <div className="bg-blue-100 bg-opacity-30 backdrop-blur-md shadow-lg rounded-lg p-6">
-        {/* Final Value */}
+        {/* Future Value */}
         <div className="mb-6 text-center">
           <p className="text-3xl font-bold text-gray-800">
             Future Value at Retirement:{' '}
@@ -132,12 +133,12 @@ function Results({ entry }) {
           </p>
         </div>
 
-        {/* chart container */}
+        {/* Chart */}
         <div className="relative w-full h-80 sm:h-96">
           <Line data={data} options={options} />
         </div>
 
-        {/* parameters */}
+        {/* Parameters */}
         <div className="mt-6 px-2">
           <h2 className="text-2xl font-semibold text-center mb-4">Investment Parameters</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -148,12 +149,13 @@ function Results({ entry }) {
             </div>
             <div className="text-center">
               <p className="text-lg font-medium text-gray-700">
-                <strong>Investment Period:</strong> {currentAge} to {retirementAge} years old
+                <strong>Investment Period:</strong> {currentAge} to {retirementAge}
               </p>
             </div>
             <div className="text-center">
               <p className="text-lg font-medium text-gray-700">
-                <strong>Initial Investment:</strong> ${spendingAmount.toLocaleString(undefined, {
+                <strong>Initial Investment:</strong>{' '}
+                ${spendingAmount.toLocaleString(undefined, {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 0,
                 })}
