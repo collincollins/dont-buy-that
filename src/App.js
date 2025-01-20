@@ -50,7 +50,7 @@ function App() {
       <Navbar />
 
       {/* main content */}
-      <main className="flex-grow max-w-4xl mx-auto px-4">
+      <main className="flex-grow w-full max-w-screen-md mx-auto px-4">
         <Card className="mb-8">
           <InputForm onAddEntry={handleAddEntry} />
         </Card>
