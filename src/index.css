@@ -1,16 +1,23 @@
 /* src/index.css */
 
-/* tailwind css directives */
+/* Import the Fredoka One font for a "bubbly" look */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* Tailwind base directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* custom styles */
+/* Custom styles */
 body {
   @apply font-sans bg-gray-100 text-gray-800;
 }
 
+/* Bubbly font utility class */
+.bubbly-font {
+  font-family: 'Fredoka One', cursive;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

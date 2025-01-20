@@ -65,7 +65,7 @@ function App() {
       {/* footer */}
       <footer className="w-full bg-white shadow-md mt-8 rounded-t-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-4">
-          <span className="text-gray-500 text-sm">Made by Collin Collins</span>
+          <span className="text-gray-500 text-sm">Made by Collin</span>
 
           {/* conditionally render the "Buy Me a Coffee" button */}
           {showCoffeeButton && (

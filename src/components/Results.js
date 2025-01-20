@@ -4,8 +4,6 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { calculateFutureValue } from '../utils/calculations';
 import CountUp from 'react-countup';
-
-// import Chart.js and required components
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,7 +15,6 @@ import {
   Legend,
 } from 'chart.js';
 
-// register the components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -31,11 +28,8 @@ ChartJS.register(
 function Results({ entry }) {
   const { currentAge, retirementAge, spendingAmount, rateOfReturn } = entry;
   const years = retirementAge - currentAge;
-
-  // calculate the final future value
   const finalValue = calculateFutureValue(spendingAmount, rateOfReturn, years);
 
-  // generate data points for each year
   const labels = Array.from({ length: years + 1 }, (_, i) => currentAge + i);
   const dataPoints = Array.from({ length: years + 1 }, (_, i) =>
     Math.round(calculateFutureValue(spendingAmount, rateOfReturn, i))
@@ -47,7 +41,7 @@ function Results({ entry }) {
       {
         data: dataPoints,
         fill: false,
-        backgroundColor: '#10B981', // emerald-500
+        backgroundColor: '#10B981',
         borderColor: '#10B981',
         tension: 0.3,
         pointRadius: 4,
@@ -58,11 +52,9 @@ function Results({ entry }) {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false, // allows the chart to adjust its height
+    maintainAspectRatio: false,
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: false },
       title: {
         display: true,
         text: 'Investment Growth Over Time',
@@ -70,23 +62,20 @@ function Results({ entry }) {
           size: 20,
           family: 'Inter, sans-serif',
         },
-        color: '#374151', // gray-700
+        color: '#374151',
       },
       tooltip: {
         callbacks: {
           label: function (context) {
-            return `Future Value: $${context.parsed.y.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+            return `Future Value: $${context.parsed.y.toLocaleString(undefined, { 
+              minimumFractionDigits: 0, 
+              maximumFractionDigits: 0 
+            })}`;
           },
         },
-        backgroundColor: 'rgba(31, 41, 55, 0.9)', // gray-800 with opacity
-        titleFont: {
-          family: 'Inter, sans-serif',
-          size: 16,
-        },
-        bodyFont: {
-          family: 'Inter, sans-serif',
-          size: 14,
-        },
+        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+        titleFont: { family: 'Inter, sans-serif', size: 16 },
+        bodyFont: { family: 'Inter, sans-serif', size: 14 },
       },
     },
     scales: {
@@ -94,17 +83,11 @@ function Results({ entry }) {
         title: {
           display: true,
           text: 'Age',
-          font: {
-            size: 16,
-            family: 'Inter, sans-serif',
-          },
-          color: '#374151', // gray-700
+          font: { size: 16, family: 'Inter, sans-serif' },
+          color: '#374151',
         },
         ticks: {
-          font: {
-            size: 14,
-            family: 'Inter, sans-serif',
-          },
+          font: { size: 14, family: 'Inter, sans-serif' },
           color: '#374151',
         },
       },
@@ -113,21 +96,17 @@ function Results({ entry }) {
         title: {
           display: true,
           text: 'Future Value ($)',
-          font: {
-            size: 16,
-            family: 'Inter, sans-serif',
-          },
+          font: { size: 16, family: 'Inter, sans-serif' },
           color: '#374151',
         },
         ticks: {
-          font: {
-            size: 14,
-            family: 'Inter, sans-serif',
-          },
+          font: { size: 14, family: 'Inter, sans-serif' },
           color: '#374151',
-          // include a dollar sign and format number with commas, no decimal places
           callback: function (value) {
-            return '$' + value.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            return '$' + value.toLocaleString(undefined, {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            });
           },
         },
       },
@@ -154,7 +133,7 @@ function Results({ entry }) {
         </div>
 
         {/* chart container */}
-        <div className="relative h-80 sm:h-96">
+        <div className="relative w-full h-80 sm:h-96">
           <Line data={data} options={options} />
         </div>
 
@@ -174,7 +153,10 @@ function Results({ entry }) {
             </div>
             <div className="text-center">
               <p className="text-lg font-medium text-gray-700">
-                <strong>Initial Investment:</strong> ${spendingAmount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                <strong>Initial Investment:</strong> ${spendingAmount.toLocaleString(undefined, {
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                })}
               </p>
             </div>
           </div>
