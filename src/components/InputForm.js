@@ -1,4 +1,5 @@
 // src/components/InputForm.js
+
 import React, { useState } from 'react';
 
 function InputForm({ onAddEntry }) {
@@ -70,7 +71,7 @@ function InputForm({ onAddEntry }) {
             min="0"
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.currentAge ? 'border-red-500' : 'border-gray-300'
-            } rounded-md focus:ring-primary focus:border-primary text-xs`}
+            } rounded-md focus:ring-primary focus:border-primary text-base`}
             placeholder="e.g., 30"
           />
           {errors.currentAge && (
@@ -92,7 +93,7 @@ function InputForm({ onAddEntry }) {
             min="0" 
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.retirementAge ? 'border-red-500' : 'border-gray-300'
-            } rounded-md focus:ring-primary focus:border-primary text-xs`}
+            } rounded-md focus:ring-primary focus:border-primary text-base`}
             placeholder="e.g., 65"
           />
           {errors.retirementAge && (
@@ -115,7 +116,7 @@ function InputForm({ onAddEntry }) {
           min="0"
           className={`mt-1 block w-full px-4 py-3 border ${
             errors.spendingAmount ? 'border-red-500' : 'border-gray-300'
-          } rounded-md focus:ring-primary focus:border-primary text-xs`}
+          } rounded-md focus:ring-primary focus:border-primary text-base`}
           placeholder="e.g., 10000"
         />
         {errors.spendingAmount && (
@@ -127,7 +128,7 @@ function InputForm({ onAddEntry }) {
       <div>
         <button
           type="submit"
-          className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md text-white text-2sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-300 border border-black shadow-pixel"
+          className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md text-white text-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-300 border border-black shadow-pixel"
           aria-label="Calculate Future Value"
         >
           Calculate
