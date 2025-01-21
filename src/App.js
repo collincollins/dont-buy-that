@@ -93,25 +93,6 @@ function App() {
       {/* Footer */}
       <footer className="w-[90%] mx-auto bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
-          {/* RetroHitCounter placed above the footer text */}
-          <div className="mb-1">
-            <RetroHitCounter
-              hits={hitCount}
-              withBorder={true}
-              withGlow={true}
-              minLength={7}
-              size={20}
-              padding={4}
-              digitSpacing={3}
-              segmentThickness={3}
-              segmentSpacing={0.5}
-              segmentActiveColor="#76FF03"
-              segmentInactiveColor="#315324"
-              backgroundColor="#222222"
-              borderThickness={5}
-              glowStrength={1.0}
-            />
-          </div>
 
           {/* Existing Footer Text */}
           <span className="text-gray-500 text-xs">Made by Collin</span>
@@ -134,6 +115,25 @@ function App() {
               </span>
             </>
           )}
+          {/* RetroHitCounter placed above the footer text */}
+          <div className="py-5">
+            <RetroHitCounter
+              hits={hitCount}
+              withBorder={true}
+              withGlow={true}
+              minLength={7}
+              size={20}
+              padding={4}
+              digitSpacing={3}
+              segmentThickness={3}
+              segmentSpacing={0.5}
+              segmentActiveColor="#76FF03"
+              segmentInactiveColor="#315324"
+              backgroundColor="#222222"
+              borderThickness={5}
+              glowStrength={1.0}
+            />
+          </div>
         </div>
       </footer>
     </div>
