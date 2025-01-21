@@ -4,7 +4,6 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -13,7 +12,6 @@ const client = new MongoClient(uri, {
   },
 });
 
-// Ensure the client connects only once
 let isConnected = false;
 
 exports.handler = async (event, context) => {
@@ -25,10 +23,13 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log("Function 'incrementHit' invoked.");
+
     if (!isConnected) {
+      console.log("Connecting to MongoDB...");
       await client.connect();
       isConnected = true;
-      console.log('Connected to MongoDB');
+      console.log("Connected to MongoDB.");
     }
 
     const database = client.db('dontbuythat');
@@ -39,6 +40,8 @@ exports.handler = async (event, context) => {
       { $inc: { count: 1 } },
       { upsert: true, returnDocument: 'after' }
     );
+
+    console.log(`Hit count updated to: ${hit.value.count}`);
 
     return {
       statusCode: 200,
