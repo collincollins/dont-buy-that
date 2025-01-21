@@ -44,9 +44,9 @@ function Results({ entry }) {
         backgroundColor: '#56AE57',
         borderColor: '#56AE57',
         tension: 0,
-        pointRadius: 6,
+        pointRadius: 5,
         pointBorderColor: '#000',
-        pointBorderWidth: 2,
+        pointBorderWidth: 0,
         pointHoverRadius: 10,
         pointStyle: 'rect',
       },
@@ -151,20 +151,20 @@ function Results({ entry }) {
 
       {/* Parameters */}
       <div className="mt-10 px-2">
-        <h2 className="text-xs font-semibold text-center mb-4">Investment Parameters</h2>
+        <h2 className="text-xs font-semibold text-center mb-4 text-black">Investment Parameters</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="text-center">
-            <p className="text-xs font-medium text-gray-700">
+            <p className="text-xs font-medium text-gray-600">
               <strong>Annual Rate of Return:</strong> 8.00%
             </p>
           </div>
           <div className="text-center">
-            <p className="text-xs font-medium text-gray-700">
+            <p className="text-xs font-medium text-gray-600">
               <strong>Investment Period:</strong> {currentAge} to {retirementAge}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-xs font-medium text-gray-700">
+            <p className="text-xs font-medium text-gray-600">
               <strong>Initial Investment:</strong>{' '}
               ${spendingAmount.toLocaleString(undefined, {
                 minimumFractionDigits: 0,
