@@ -1,6 +1,6 @@
 // netlify/functions/incrementHit.js
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ReturnDocument } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 
@@ -38,8 +38,14 @@ exports.handler = async (event, context) => {
     const hit = await hitsCollection.findOneAndUpdate(
       { _id: 'hitCounter' },
       { $inc: { count: 1 } },
-      { upsert: true, returnDocument: 'after' }
+      { upsert: true, returnDocument: ReturnDocument.AFTER }
     );
+
+    console.log('Hit object:', hit);
+
+    if (!hit.value) {
+      throw new Error('Failed to retrieve updated hit count.');
+    }
 
     console.log(`Hit count updated to: ${hit.value.count}`);
 
