@@ -1,9 +1,20 @@
 // netlify/functions/getHit.js
 
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = "mongodb+srv://collincollins2:<Cagqi8-soffup-rahvir>@dontbuythatcluster.90lqn.mongodb.net/?retryWrites=true&w=majority&appName=dontbuythatcluster";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = process.env.MONGODB_URI;
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
+
+// Ensure the client connects only once
+let isConnected = false;
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'GET') {
@@ -14,7 +25,12 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    await client.connect();
+    if (!isConnected) {
+      await client.connect();
+      isConnected = true;
+      console.log('Connected to MongoDB');
+    }
+
     const database = client.db('dontbuythat');
     const hitsCollection = database.collection('hits');
 
@@ -27,12 +43,10 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ count }),
     };
   } catch (error) {
-    console.error(error);
+    console.error('Error in getHit function:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Internal Server Error' }),
     };
-  } finally {
-    await client.close();
   }
 };
