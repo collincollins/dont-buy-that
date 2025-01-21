@@ -2,7 +2,7 @@
 
 const { MongoClient } = require('mongodb');
 
-const uri = process.env.MONGODB_URI;
+const uri = "mongodb+srv://collincollins2:<Cagqi8-soffup-rahvir>@dontbuythatcluster.90lqn.mongodb.net/?retryWrites=true&w=majority&appName=dontbuythatcluster";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 exports.handler = async (event, context) => {
