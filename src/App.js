@@ -1,39 +1,54 @@
 // src/App.js
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios'; // Import Axios
 import coffeeButton from './components/img/buy-me-a-coffee-button.png';
 import Navbar from './components/Navbar';
 import InputForm from './components/InputForm';
 import Results from './components/Results';
 import Card from './components/Card';
+import RetroHitCounter from 'react-retro-hit-counter';
 
 function App() {
   const [entry, setEntry] = useState(null);
   const [showCoffeeButton, setShowCoffeeButton] = useState(false);
   const [threeDollarsFutureValue, setThreeDollarsFutureValue] = useState(0);
+  const [hitCount, setHitCount] = useState(0); // State for hit count
 
-  // 1. Create a ref for the results section
+  // Create a ref for the results section
   const resultsRef = useRef(null);
 
-  // called by InputForm once validation passes
-  const handleAddEntry = (newEntry) => {
-    // debug: confirm we're getting correct values
-    console.log('New entry:', newEntry);
-    console.log(
-      'Years difference:',
-      newEntry.retirementAge - newEntry.currentAge
-    );
+  // Fetch and increment hit count on component mount
+  useEffect(() => {
+    const trackHit = async () => {
+      try {
+        // Increment the hit count
+        await axios.post('/.netlify/functions/incrementHit');
+        // Fetch the updated hit count
+        const response = await axios.get('/.netlify/functions/getHit');
+        setHitCount(response.data.count);
+      } catch (error) {
+        console.error('Error tracking hit count:', error);
+      }
+    };
 
-    // update state
+    trackHit();
+  }, []);
+
+  // Handle adding a new entry
+  const handleAddEntry = (newEntry) => {
+    // Debug: confirm we're getting correct values
+    console.log('New entry:', newEntry);
+    console.log('Years difference:', newEntry.retirementAge - newEntry.currentAge);
+
+    // Update state
     setEntry(newEntry);
     setShowCoffeeButton(true);
 
-    // run the "3 dollar" future value calc
-    calculateThreeDollarsFutureValue(
-      newEntry.retirementAge - newEntry.currentAge
-    );
+    // Run the "3 dollar" future value calculation
+    calculateThreeDollarsFutureValue(newEntry.retirementAge - newEntry.currentAge);
 
-    // 2. after setting entry, scroll to results (small timeout to ensure render)
+    // After setting entry, scroll to results
     setTimeout(() => {
       if (resultsRef.current) {
         resultsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -41,7 +56,7 @@ function App() {
     }, 100);
   };
 
-  // helper function for the coffee calculation
+  // Helper function for the coffee calculation
   const calculateThreeDollarsFutureValue = (years) => {
     const P = 3; // principal
     const r = 0.08; // 8% interest
@@ -55,10 +70,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-primarydark bg-opacity-30 flex flex-col">
-      {/* navbar */}
+      {/* Navbar */}
       <Navbar />
 
-      {/* main content */}
+      {/* Main Content */}
       <main className="flex-grow w-full max-w-screen-md mx-auto px-3">
         <Card className="mb-6">
           <InputForm onAddEntry={handleAddEntry} />
@@ -75,10 +90,30 @@ function App() {
         )}
       </main>
 
-
-      {/* footer */}
+      {/* Footer */}
       <footer className="w-[90%] mx-auto bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-4">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
+          {/* RetroHitCounter placed above the footer text */}
+          <div className="mb-1">
+            <RetroHitCounter
+              hits={hitCount}
+              withBorder={true}
+              withGlow={true}
+              minLength={7}
+              size={20}
+              padding={4}
+              digitSpacing={3}
+              segmentThickness={3}
+              segmentSpacing={0.5}
+              segmentActiveColor="#76FF03"
+              segmentInactiveColor="#315324"
+              backgroundColor="#222222"
+              borderThickness={5}
+              glowStrength={1.0}
+            />
+          </div>
+
+          {/* Existing Footer Text */}
           <span className="text-gray-500 text-xs">Made by Collin</span>
 
           {showCoffeeButton && (
