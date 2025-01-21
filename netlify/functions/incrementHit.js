@@ -44,15 +44,17 @@ exports.handler = async (event, context) => {
     console.log('Hit object:', hit);
 
     // Adjusted to access 'hit.count' directly
-    if (!hit || !hit.value) { // Adding extra safety
+    const updatedCount = hit.value ? hit.value.count : hit.count;
+
+    if (updatedCount === undefined) {
       throw new Error('Failed to retrieve updated hit count.');
     }
 
-    console.log(`Hit count updated to: ${hit.value.count}`);
+    console.log(`Hit count updated to: ${updatedCount}`);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ count: hit.value.count }),
+      body: JSON.stringify({ count: updatedCount }),
     };
   } catch (error) {
     console.error('Error in incrementHit function:', error);
