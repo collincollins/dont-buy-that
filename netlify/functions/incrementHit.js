@@ -43,7 +43,8 @@ exports.handler = async (event, context) => {
 
     console.log('Hit object:', hit);
 
-    if (!hit.value) {
+    // Adjusted to access 'hit.count' directly
+    if (!hit || !hit.value) { // Adding extra safety
       throw new Error('Failed to retrieve updated hit count.');
     }
 
