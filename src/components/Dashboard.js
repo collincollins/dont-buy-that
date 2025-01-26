@@ -39,11 +39,6 @@ function Dashboard() {
           <Results entry={entry} />
         </div>
       )}
-
-      {/* footer */}
-      <footer className="w-full max-w-4xl text-center text-gray-600 dark:text-gray-400 mt-auto">
-        &copy; {new Date().getFullYear()} Don't Buy That. All rights reserved.
-      </footer>
     </div>
   );
 }

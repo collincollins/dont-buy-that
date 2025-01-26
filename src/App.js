@@ -95,7 +95,7 @@ function App() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
 
           {/* Existing Footer Text */}
-          <span className="text-gray-500 text-xs">Made by Collin</span>
+          <span className="text-gray-500 text-xs py-1">Made by Collin</span>
 
           {showCoffeeButton && (
             <>
@@ -103,6 +103,7 @@ function App() {
                 href="https://www.buymeacoffee.com/B4Aaol3SrI"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="coffee-button"
               >
                 <img
                   src={coffeeButton}
@@ -110,13 +111,13 @@ function App() {
                   style={{ height: '50px', width: '181px' }}
                 />
               </a>
-              <span className="text-gray-500 text-xs italic">
+              <span className="text-gray-500 py-1 text-xs italic">
                 *or don't and have ${threeDollarsFutureValue} in retirement
               </span>
             </>
           )}
           {/* RetroHitCounter placed above the footer text */}
-          <div className="py-5">
+          <div className="py-1">
             <RetroHitCounter
               hits={hitCount}
               withBorder={true}

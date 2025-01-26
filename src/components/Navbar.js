@@ -8,7 +8,7 @@ function Navbar() {
           className="
             text-2xl 
             font-bold 
-            font-sans  /* Updated font class */
+            font-sans
             text-primary 
             bg-primarydark  
             bg-opacity-20

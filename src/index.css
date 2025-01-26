@@ -13,3 +13,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.coffee-button {
+  height: 50px;
+  width: 181px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid black;
+  box-shadow: 2px 2px 0px black;
+  display: block;
+  margin: 0 auto;
+}

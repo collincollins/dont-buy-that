@@ -130,7 +130,7 @@ function Results({ entry }) {
     <div className="mt-3 w-full mx-auto px-0 max-w-screen-xl">
       {/* Future Value */}
       <div className="mb-4 text-center">
-        <p className="text-lg font-bold text-gray-800">
+        <p className="text-md font-bold text-gray-800">
           Future Value at Retirement:
           <span className="text-accent block">
             $
@@ -150,7 +150,7 @@ function Results({ entry }) {
       </div>
 
       {/* Parameters */}
-      <div className="mt-10 px-2">
+      <div className="mt-5 px-2">
         <h2 className="text-xs font-semibold text-center mb-4 text-black">Investment Parameters</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="text-center">
