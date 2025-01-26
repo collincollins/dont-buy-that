@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6fbf7b0b-f850-45ab-9083-212098598e4f/deploy-status)](https://app.netlify.com/sites/dontbuythat/deploys)
+ 
  # [Don't Buy That!](https://www.dontbuythat.org)
 
  **Don't Buy That!** is a nostalgic-themed webapp that helps you see what your money could potentially grow into if you skip a purchase and invest the money instead. Enter your current age, the age at which you plan to retire, and the amount you’re thinking of spending. The app calculates the future value of that amount at an 8% annual return and visualizes the growth via a chart.
