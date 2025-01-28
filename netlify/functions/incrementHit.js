@@ -1,6 +1,7 @@
 // netlify/functions/incrementHit.js
 
-const { MongoClient, ServerApiVersion, ReturnDocument } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const crypto = require('crypto');
 
 const uri = process.env.MONGODB_URI;
 
@@ -23,41 +24,41 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    console.log("Function 'incrementHit' invoked.");
-
     if (!isConnected) {
-      console.log("Connecting to MongoDB...");
       await client.connect();
       isConnected = true;
-      console.log("Connected to MongoDB.");
     }
 
     const database = client.db('dontbuythat');
     const hitsCollection = database.collection('hits');
+    const visitorsCollection = database.collection('visitors');
 
-    const hit = await hitsCollection.findOneAndUpdate(
+    // Increment hit count
+    const hitResult = await hitsCollection.findOneAndUpdate(
       { _id: 'hitCounter' },
       { $inc: { count: 1 } },
-      { upsert: true, returnDocument: ReturnDocument.AFTER }
+      { upsert: true, returnDocument: 'after' }
     );
 
-    console.log('Hit object:', hit);
+    // Get visitor IP and hash it
+    const ip = event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'unknown';
+    const hashedIP = crypto.createHash('sha256').update(ip).digest('hex');
 
-    // Adjusted to access 'hit.count' directly
-    const updatedCount = hit.value ? hit.value.count : hit.count;
-
-    if (updatedCount === undefined) {
-      throw new Error('Failed to retrieve updated hit count.');
+    // Check if the visitor already exists
+    const existingVisitor = await visitorsCollection.findOne({ _id: hashedIP });
+    if (!existingVisitor) {
+      // Add the new visitor
+      await visitorsCollection.insertOne({ _id: hashedIP, visitedAt: new Date() });
     }
-
-    console.log(`Hit count updated to: ${updatedCount}`);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ count: updatedCount }),
+      body: JSON.stringify({
+        hitCount: hitResult.value ? hitResult.value.count : 1,
+      }),
     };
   } catch (error) {
-    console.error('Error in incrementHit function:', error);
+    console.error('Error in incrementHit:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Internal Server Error' }),

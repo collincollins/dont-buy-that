@@ -14,8 +14,6 @@ function App() {
   const [showCoffeeButton, setShowCoffeeButton] = useState(false);
   const [threeDollarsFutureValue, setThreeDollarsFutureValue] = useState(0);
   const [uniqueVisitorCount, setUniqueVisitorCount] = useState(0);
-  // const [hitCount, setHitCount] = useState(0);
-  const setHitCount = useState(0);
 
   // Create a ref for the results section
   const resultsRef = useRef(null);
@@ -26,21 +24,17 @@ function App() {
       try {
         // Track the hit (increment hit count in the database)
         await axios.post('/.netlify/functions/incrementHit');
-
+  
         // Fetch the unique visitor count
         const visitorResponse = await axios.get('/.netlify/functions/getUniqueVisitors');
         setUniqueVisitorCount(visitorResponse.data.count);
-
-        // Fetch the hit count (optional, just for backend tracking purposes)
-        const hitResponse = await axios.get('/.netlify/functions/getHit');
-        setHitCount(hitResponse.data.count);
       } catch (error) {
         console.error('Error tracking visit:', error);
       }
     };
-
+  
     trackVisit();
-  }, [setHitCount]);
+  }, []);
 
   // Handle adding a new entry
   const handleAddEntry = (newEntry) => {

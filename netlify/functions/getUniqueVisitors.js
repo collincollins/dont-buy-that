@@ -23,13 +23,9 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    console.log("Function 'getUniqueVisitors' invoked.");
-
     if (!isConnected) {
-      console.log("Connecting to MongoDB...");
       await client.connect();
       isConnected = true;
-      console.log("Connected to MongoDB.");
     }
 
     const database = client.db('dontbuythat');
@@ -43,7 +39,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ count: uniqueVisitorCount }),
     };
   } catch (error) {
-    console.error('Error in getUniqueVisitors function:', error);
+    console.error('Error in getUniqueVisitors:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Internal Server Error' }),
