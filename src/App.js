@@ -14,7 +14,8 @@ function App() {
   const [showCoffeeButton, setShowCoffeeButton] = useState(false);
   const [threeDollarsFutureValue, setThreeDollarsFutureValue] = useState(0);
   const [uniqueVisitorCount, setUniqueVisitorCount] = useState(0);
-  const [hitCount, setHitCount] = useState(0);
+  // const [hitCount, setHitCount] = useState(0);
+  const setHitCount = useState(0);
 
   // Create a ref for the results section
   const resultsRef = useRef(null);
@@ -39,7 +40,7 @@ function App() {
     };
 
     trackVisit();
-  }, []);
+  }, [setHitCount]);
 
   // Handle adding a new entry
   const handleAddEntry = (newEntry) => {
