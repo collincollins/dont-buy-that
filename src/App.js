@@ -13,26 +13,32 @@ function App() {
   const [entry, setEntry] = useState(null);
   const [showCoffeeButton, setShowCoffeeButton] = useState(false);
   const [threeDollarsFutureValue, setThreeDollarsFutureValue] = useState(0);
-  const [hitCount, setHitCount] = useState(0); // State for hit count
+  const [uniqueVisitorCount, setUniqueVisitorCount] = useState(0);
+  const [hitCount, setHitCount] = useState(0);
 
   // Create a ref for the results section
   const resultsRef = useRef(null);
 
-  // Fetch and increment hit count on component mount
+  // Fetch and increment unique visitor and hit count on component mount
   useEffect(() => {
-    const trackHit = async () => {
+    const trackVisit = async () => {
       try {
-        // Increment the hit count
+        // Track the hit (increment hit count in the database)
         await axios.post('/.netlify/functions/incrementHit');
-        // Fetch the updated hit count
-        const response = await axios.get('/.netlify/functions/getHit');
-        setHitCount(response.data.count);
+
+        // Fetch the unique visitor count
+        const visitorResponse = await axios.get('/.netlify/functions/getUniqueVisitors');
+        setUniqueVisitorCount(visitorResponse.data.count);
+
+        // Fetch the hit count (optional, just for backend tracking purposes)
+        const hitResponse = await axios.get('/.netlify/functions/getHit');
+        setHitCount(hitResponse.data.count);
       } catch (error) {
-        console.error('Error tracking hit count:', error);
+        console.error('Error tracking visit:', error);
       }
     };
 
-    trackHit();
+    trackVisit();
   }, []);
 
   // Handle adding a new entry
@@ -111,15 +117,17 @@ function App() {
                   style={{ height: '50px', width: '181px' }}
                 />
               </a>
-              <span className="text-gray-500 py-1 text-xs italic">
+              <span className="text-gray-500 py-1 text-xs italic text-center">
                 *or don't and have ${threeDollarsFutureValue} in retirement
               </span>
             </>
           )}
           {/* RetroHitCounter placed above the footer text */}
           <div className="py-1">
+            <span className="text-gray-700 py-1 text-[0.6em] text-center">Visitors</span>
+            <p></p>
             <RetroHitCounter
-              hits={hitCount}
+              hits={uniqueVisitorCount}
               withBorder={true}
               withGlow={true}
               minLength={7}

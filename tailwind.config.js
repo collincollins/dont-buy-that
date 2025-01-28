@@ -30,7 +30,7 @@ module.exports = {
         'pixel-xs': '1px 1px 0 #000, 1.5px .5px 0 #000, 1.5px 1.5px 0 #000',
         'pixel-sm': '1px 1px 0 #000, 2px 2px 0 #000, 2px 2px 0 #000',
         'pixel': '1px 1px 0 #000, 3px 3px 0 #000, 3px 3px 0 #000',
-        'pixel-lg': '1px 1px 0 #000, 4px 4px 0 #000, 4px 4px 0 #000'
+        'pixel-lg': '3px 3px 0 #000, 3px 3px 0 #000, 3px 3px 0 #000'
       },
     },
   },
