@@ -75,7 +75,7 @@ function App() {
       <Navbar />
 
       {/* Main Content */}
-      <main className="flex-grow w-full max-w-screen-md mx-auto px-3">
+      <main className="flex-grow w-[90%] max-w-screen-md mx-auto px-3">
         <Card className="mb-6">
           <InputForm onAddEntry={handleAddEntry} />
         </Card>
@@ -92,7 +92,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-[90%] mx-auto bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
+      <footer className="w-[90%] max-w-screen-md mx-auto px-3 bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
 
           {/* Existing Footer Text */}

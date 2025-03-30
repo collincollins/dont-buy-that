@@ -2,8 +2,8 @@
 
 function Navbar() {
   return (
-    <nav className="w-[90%] mx-auto bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
-      <div className="max-w-lg mx-auto px-4 py-4 flex flex-col items-center">
+    <nav className="w-[90%] max-w-screen-md mx-auto px-3 bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
+      <div className="max-w-sm mx-auto px-4 py-4 flex flex-col items-center">
         <h2 
           className="
             text-2xl 
