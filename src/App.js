@@ -96,7 +96,7 @@ function App() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
 
           {/* Existing Footer Text */}
-          <span className="text-gray-500 text-xs py-1">Made by Collin</span>
+          <span className="text-gray-500 text-xs py-1">made by collin and claude</span>
 
           {showCoffeeButton && (
             <>
