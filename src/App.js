@@ -94,10 +94,6 @@ function App() {
       {/* Footer */}
       <footer className="w-[90%] max-w-screen-md mx-auto px-3 bg-gray-100 mb-6 mt-6 rounded-xl border border-black shadow-pixel-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col items-center space-y-1">
-
-          {/* Existing Footer Text */}
-          <span className="text-gray-500 text-xs py-1">made by collin and claude</span>
-
           {showCoffeeButton && (
             <>
               <a
@@ -138,6 +134,8 @@ function App() {
               glowStrength={1.0}
             />
           </div>
+        {/* Existing Footer Text */}
+        <span className="text-gray-500 text-[0.6em] py-1 mt-[0px]">made by collin and claude</span>
         </div>
       </footer>
     </div>
